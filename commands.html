@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAZONI — Chat Commands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0c0505;
+    --bg-panel: #150808;
+    --line: #341314;
+    --text: #f2e7e7;
+    --text-dim: #8a6a6c;
+    --red: #ff2b3d;
+    --red-deep: #b3121f;
+    --amber: #ff7a3d;
+    --green: #3ddc84;
+    --yellow: #ffcf5c;
+    --blue: #4fa8ff;
+    --purple: #b16bff;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Inter', sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(255,43,61,0.14), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(179,18,31,0.12), transparent 40%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 42px 42px, 42px 42px;
+    min-height:100vh;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding: 4.5rem 1.5rem 3rem;
+    text-align:center;
+    overflow:hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(255,43,61,0.10) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg, rgba(255,43,61,0.035) 0px, rgba(255,43,61,0.035) 1px, transparent 2px, transparent 4px);
+    pointer-events:none;
+    mix-blend-mode: overlay;
+  }
+
+  .back-link{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:0.4rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    color: var(--text-dim);
+    text-decoration:none;
+    margin-bottom:1.6rem;
+    border:1px solid var(--line);
+    padding: 0.45rem 0.9rem;
+    border-radius:8px;
+    transition: border-color .2s ease, color .2s ease;
+  }
+  .back-link:hover{ border-color: var(--red); color: var(--text); }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.35em;
+    color: var(--text-dim);
+    text-transform:uppercase;
+    margin-bottom:1.2rem;
+  }
+  .eyebrow::before{ content:"● "; color: var(--red); }
+
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size: clamp(1.9rem, 7vw, 3.8rem);
+    letter-spacing:-0.02em;
+    line-height:1.15;
+    position:relative;
+    display:inline-block;
+    color: var(--text);
+    text-shadow: 0 0 34px rgba(255,43,61,0.45);
+  }
+  .logo .pipe{ color: var(--text-dim); font-weight:400; margin:0 0.3em; }
+  .logo .sub{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size: 0.42em;
+    letter-spacing:0.15em;
+    color: var(--red);
+    vertical-align: 0.15em;
+  }
+
+  .glitch-wrap{ position:relative; display:inline-block; }
+  .glitch-wrap::before,
+  .glitch-wrap::after{
+    content: attr(data-text);
+    position:absolute; top:0; left:0;
+    width:100%; height:100%;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    opacity:0.7;
+    pointer-events:none;
+  }
+  .glitch-wrap::before{
+    color: var(--amber);
+    animation: glitch1 4.2s infinite steps(1);
+    clip-path: inset(0 0 55% 0);
+  }
+  .glitch-wrap::after{
+    color: var(--red-deep);
+    animation: glitch2 5.6s infinite steps(1);
+    clip-path: inset(58% 0 0 0);
+  }
+  @keyframes glitch1{
+    0%,90%,100%{ transform:translate(0,0); opacity:0; }
+    91%{ transform:translate(-4px,-1px); opacity:0.75; }
+    93%{ transform:translate(4px,1px); opacity:0.5; }
+    95%{ transform:translate(-2px,0); opacity:0.7; }
+    97%{ transform:translate(3px,-1px); opacity:0.4; }
+  }
+  @keyframes glitch2{
+    0%,88%,100%{ transform:translate(0,0); opacity:0; }
+    89%{ transform:translate(4px,1px); opacity:0.65; }
+    92%{ transform:translate(-4px,0); opacity:0.45; }
+    94%{ transform:translate(3px,-1px); opacity:0.65; }
+    96%{ transform:translate(-3px,1px); opacity:0.35; }
+  }
+
+  .tagline{
+    font-family:'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    font-size:0.9rem;
+    margin-top:1.2rem;
+  }
+  .tagline b{ color: var(--red); }
+
+  /* ---------- CONTENT ---------- */
+  .content{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 3.2rem 1.5rem 5rem;
+    display:grid;
+    gap: 2rem;
+  }
+
+  .panel{
+    background: var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    --accent: var(--red);
+  }
+  .panel.c-game{ --accent: var(--red); }
+  .panel.c-social{ --accent: var(--green); }
+  .panel.c-chat{ --accent: var(--yellow); }
+  .panel.c-useful{ --accent: var(--blue); }
+  .panel.c-season{ --accent: var(--purple); }
+
+  .panel-head{
+    display:flex; align-items:center; gap:0.7rem;
+    padding: 0.95rem 1.3rem;
+    border-bottom:1px solid var(--line);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
+  }
+  .traffic{ display:flex; gap:6px; }
+  .traffic span{ width:9px; height:9px; border-radius:50%; background:var(--accent); opacity:0.85; }
+  .traffic span:nth-child(2){ opacity:0.5; }
+  .traffic span:nth-child(3){ opacity:0.25; }
+
+  .panel-title{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color: var(--accent);
+  }
+  .panel-sub{
+    margin-left:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    color: var(--text-dim);
+  }
+
+  .cmd-body{
+    padding: 1.3rem 1.3rem 1.5rem;
+    display:flex;
+    flex-direction:column;
+    gap: 0.7rem;
+  }
+  .cmd-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 0.55rem;
+    align-items:center;
+  }
+
+  .cmd-group{
+    display:inline-flex;
+    align-items:center;
+    gap: 0.4rem;
+  }
+  .cmd-or{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    color: var(--text-dim);
+    font-style:italic;
+  }
+
+  .chip{
+    position:relative;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    font-weight:500;
+    color: var(--text);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.45rem 0.85rem;
+    cursor: pointer;
+    user-select:none;
+    transition: border-color .18s ease, background .18s ease, transform .12s ease, box-shadow .18s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .chip:hover{
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 35%, transparent);
+    transform: translateY(-1px);
+  }
+  .chip:active{ transform: translateY(0) scale(0.97); }
+
+  .chip::after{
+    content: "нажми на меня";
+    position:absolute;
+    bottom: calc(100% + 8px);
+    left:50%;
+    transform: translateX(-50%) translateY(4px);
+    background: #1a0a0a;
+    color: var(--text-dim);
+    font-family:'Inter', sans-serif;
+    font-size:0.68rem;
+    font-weight:500;
+    padding: 0.32rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .16s ease, transform .16s ease;
+    z-index: 5;
+  }
+  .chip:hover::after{
+    opacity:1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .chip.copied::after{
+    content: "скопировано ✓";
+    color: var(--accent);
+    border-color: var(--accent);
+    opacity:1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .chip.copied{
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+
+  footer{
+    text-align:center;
+    padding: 2.5rem 1.5rem 3.5rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color: var(--text-dim);
+    border-top:1px solid var(--line);
+  }
+  .dot{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); margin-right:6px; box-shadow:0 0 8px var(--red); }
+
+  @media (prefers-reduced-motion: reduce){
+    .glitch-wrap::before, .glitch-wrap::after{ animation:none; opacity:0; }
+    .chip{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <a class="back-link" href="index.html">← на главную</a>
+  <div class="eyebrow">Twitch chat</div>
+  <h1 class="logo">
+    <span class="glitch-wrap" data-text="MAZONI">MAZONI</span><span class="pipe">|</span><span class="sub">CHAT COMMANDS</span>
+  </h1>
+  <p class="tagline">// нажми на команду — она скопируется в буфер обмена</p>
+</header>
+
+<main class="content">
+
+  <section class="panel c-game">
+    <div class="panel-head">
+      <span class="traffic"><span></span><span></span><span></span></span>
+      <span class="panel-title">🔴 Игровые настройки</span>
+      <span class="panel-sub">gameplay</span>
+    </div>
+    <div class="cmd-body">
+      <div class="cmd-row" data-row>
+        <span class="cmd-group"><span class="chip" data-cmd="!настройки">!настройки</span><span class="cmd-or">или</span><span class="chip" data-cmd="!Settings">!Settings</span></span>
+        <span class="chip" data-cmd="!сборки">!сборки</span>
+        <span class="chip" data-cmd="!перки">!перки</span>
+      </div>
+      <div class="cmd-row" data-row>
+        <span class="chip" data-cmd="!Фразы">!Фразы</span>
+        <span class="chip" data-cmd="!Управление">!Управление</span>
+        <span class="chip" data-cmd="!Dpi">!Dpi</span>
+        <span class="chip" data-cmd="!Server">!Server</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel c-social">
+    <div class="panel-head">
+      <span class="traffic"><span></span><span></span><span></span></span>
+      <span class="panel-title">🟢 Соц. сети</span>
+      <span class="panel-sub">socials</span>
+    </div>
+    <div class="cmd-body">
+      <div class="cmd-row" data-row>
+        <span class="cmd-group"><span class="chip" data-cmd="!Donate">!Donate</span><span class="cmd-or">или</span><span class="chip" data-cmd="!донат">!донат</span></span>
+        <span class="chip" data-cmd="!Memes">!Memes</span>
+        <span class="chip" data-cmd="!Хуюсти">!Хуюсти</span>
+        <span class="chip" data-cmd="!Trade">!Trade</span>
+        <span class="cmd-group"><span class="chip" data-cmd="!донатекс">!донатекс</span><span class="cmd-or">или</span><span class="chip" data-cmd="!donatex">!donatex</span></span>
+      </div>
+      <div class="cmd-row" data-row>
+        <span class="chip" data-cmd="!крипта">!крипта</span>
+        <span class="chip" data-cmd="!VK">!VK</span>
+        <span class="cmd-group"><span class="chip" data-cmd="!Youtube">!Youtube</span><span class="cmd-or">или</span><span class="chip" data-cmd="!shorts">!shorts</span></span>
+        <span class="cmd-group"><span class="chip" data-cmd="!TG">!TG</span><span class="cmd-or">или</span><span class="chip" data-cmd="!тг">!тг</span></span>
+        <span class="chip" data-cmd="!инста">!инста</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel c-chat">
+    <div class="panel-head">
+      <span class="traffic"><span></span><span></span><span></span></span>
+      <span class="panel-title">🟡 Для чатика</span>
+      <span class="panel-sub">community</span>
+    </div>
+    <div class="cmd-body">
+      <div class="cmd-row" data-row>
+        <span class="cmd-group"><span class="chip" data-cmd="!Био">!Био</span><span class="cmd-or">или</span><span class="chip" data-cmd="!About">!About</span></span>
+        <span class="chip" data-cmd="!Правила">!Правила</span>
+        <span class="chip" data-cmd="!twitchage">!twitchage</span>
+      </div>
+      <div class="cmd-row" data-row>
+        <span class="chip" data-cmd="!Горностай">!Горностай</span>
+        <span class="chip" data-cmd="!Podcast">!Podcast</span>
+        <span class="chip" data-cmd="!Ссылки">!Ссылки</span>
+        <span class="chip" data-cmd="!посчитать">!посчитать</span>
+        <span class="chip" data-cmd="!погода">!погода</span>
+      </div>
+      <div class="cmd-row" data-row>
+        <span class="cmd-group"><span class="chip" data-cmd="!sub">!sub</span><span class="cmd-or">или</span><span class="chip" data-cmd="!саб">!саб</span></span>
+        <span class="chip" data-cmd="!сырники">!сырники</span>
+        <span class="chip" data-cmd="!бицепс">!бицепс</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel c-useful">
+    <div class="panel-head">
+      <span class="traffic"><span></span><span></span><span></span></span>
+      <span class="panel-title">🔵 Полезное</span>
+      <span class="panel-sub">useful</span>
+    </div>
+    <div class="cmd-body">
+      <div class="cmd-row" data-row>
+        <span class="chip" data-cmd="!рукав">!рукав</span>
+        <span class="chip" data-cmd="!заказать">!заказать</span>
+        <span class="chip" data-cmd="!бады">!бады</span>
+        <span class="chip" data-cmd="!рекфул">!рекфул</span>
+        <span class="chip" data-cmd="!зелье">!зелье</span>
+      </div>
+      <div class="cmd-row" data-row>
+        <span class="chip" data-cmd="!Разгон">!Разгон</span>
+        <span class="chip" data-cmd="!вини">!вини</span>
+        <span class="cmd-group"><span class="chip" data-cmd="!ПК">!ПК</span><span class="cmd-or">или</span><span class="chip" data-cmd="!PC">!PC</span></span>
+        <span class="chip" data-cmd="!план">!план</span>
+        <span class="chip" data-cmd="!зипка">!зипка</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel c-season">
+    <div class="panel-head">
+      <span class="traffic"><span></span><span></span><span></span></span>
+      <span class="panel-title">🟣 Сезонные команды</span>
+      <span class="panel-sub">работают только в определённые периоды</span>
+    </div>
+    <div class="cmd-body">
+      <div class="cmd-row" data-row>
+        <span class="chip" data-cmd="!Розыгрыш">!Розыгрыш</span>
+        <span class="chip" data-cmd="!Coop">!Coop</span>
+        <span class="chip" data-cmd="!Challenge">!Challenge</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="dot"></span>mazoni — chat commands, обновлено вручную
+</footer>
+
+<script>
+  document.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var text = chip.getAttribute('data-cmd');
+      var done = function(){
+        chip.classList.add('copied');
+        setTimeout(function(){ chip.classList.remove('copied'); }, 1400);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){
+          fallbackCopy(text); done();
+        });
+      } else {
+        fallbackCopy(text); done();
+      }
+    });
+  });
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+</script>
+
+</body>
+</html>
+
