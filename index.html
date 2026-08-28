@@ -233,6 +233,33 @@
     color: var(--text-dim);
   }
 
+  .bio-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    margin-top:1.3rem;
+    padding: 0.7rem 1.3rem;
+    background: linear-gradient(100deg, var(--red), var(--red-deep));
+    color: #fff;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    text-decoration:none;
+    border-radius:9px;
+    box-shadow: 0 0 0 1px rgba(255,43,61,0.25), 0 8px 20px rgba(255,43,61,0.25);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .bio-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(255,43,61,0.4), 0 12px 28px rgba(255,43,61,0.4);
+  }
+  .bio-arrow{
+    transition: transform .2s ease;
+  }
+  .bio-btn:hover .bio-arrow{
+    transform: translateX(3px);
+  }
+
   /* ---------- SECTIONS ---------- */
   .content{
     max-width: 1080px;
@@ -353,7 +380,7 @@
 <header class="hero">
   <div class="eyebrow">Live setup / актуально на 2026</div>
   <h1 class="logo">
-    <span class="glitch-wrap" data-text="MAZA4KST">MAZONI</span>
+    <span class="glitch-wrap" data-text="MAZONI">MAZONI</span>
   </h1>
   <p class="tagline">// боевая станция и весь арсенал</p>
 
@@ -427,6 +454,10 @@
       <span><span class="lbl">Сотрудничество:</span> <a href="mailto:maza4kst@justoffer.ru">maza4kst@justoffer.ru</a></span>
       <span><span class="lbl">РКН:</span> <a href="https://goo.su/j8Ac" target="_blank" rel="noopener">goo.su/j8Ac</a></span>
     </div>
+    <a class="bio-btn" href="bio_mazoni.html">
+      <span>Читать биографию и достижения</span>
+      <span class="bio-arrow">→</span>
+    </a>
   </div>
 </div>
 
