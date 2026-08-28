@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAZONI — Биография</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0c0505;
+    --bg-panel: #150808;
+    --line: #341314;
+    --text: #f2e7e7;
+    --text-dim: #8a6a6c;
+    --red: #ff2b3d;
+    --red-deep: #b3121f;
+    --amber: #ff7a3d;
+    --gold: #ffcf5c;
+    --silver: #cfd6e0;
+    --bronze: #d98a52;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Inter', sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(255,43,61,0.14), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(179,18,31,0.12), transparent 40%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 42px 42px, 42px 42px;
+    min-height:100vh;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding: 4.5rem 1.5rem 3rem;
+    text-align:center;
+    overflow:hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(255,43,61,0.10) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg, rgba(255,43,61,0.035) 0px, rgba(255,43,61,0.035) 1px, transparent 2px, transparent 4px);
+    pointer-events:none;
+    mix-blend-mode: overlay;
+  }
+
+  .back-link{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:0.4rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    color: var(--text-dim);
+    text-decoration:none;
+    margin-bottom:1.6rem;
+    border:1px solid var(--line);
+    padding: 0.45rem 0.9rem;
+    border-radius:8px;
+    transition: border-color .2s ease, color .2s ease;
+  }
+  .back-link:hover{ border-color: var(--red); color: var(--text); }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.35em;
+    color: var(--text-dim);
+    text-transform:uppercase;
+    margin-bottom:1.2rem;
+  }
+  .eyebrow::before{ content:"● "; color: var(--red); }
+
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size: clamp(2.2rem, 8vw, 4.6rem);
+    letter-spacing:-0.02em;
+    line-height:1;
+    position:relative;
+    display:inline-block;
+    color: var(--text);
+    text-shadow: 0 0 34px rgba(255,43,61,0.45);
+  }
+
+  .glitch-wrap{ position:relative; display:inline-block; }
+  .glitch-wrap::before,
+  .glitch-wrap::after{
+    content: attr(data-text);
+    position:absolute; top:0; left:0;
+    width:100%; height:100%;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size: clamp(2.2rem, 8vw, 4.6rem);
+    letter-spacing:-0.02em;
+    opacity:0.7;
+    pointer-events:none;
+  }
+  .glitch-wrap::before{
+    color: var(--amber);
+    animation: glitch1 4.2s infinite steps(1);
+    clip-path: inset(0 0 55% 0);
+  }
+  .glitch-wrap::after{
+    color: var(--red-deep);
+    animation: glitch2 5.6s infinite steps(1);
+    clip-path: inset(58% 0 0 0);
+  }
+  @keyframes glitch1{
+    0%,90%,100%{ transform:translate(0,0); opacity:0; }
+    91%{ transform:translate(-4px,-1px); opacity:0.75; }
+    93%{ transform:translate(4px,1px); opacity:0.5; }
+    95%{ transform:translate(-2px,0); opacity:0.7; }
+    97%{ transform:translate(3px,-1px); opacity:0.4; }
+  }
+  @keyframes glitch2{
+    0%,88%,100%{ transform:translate(0,0); opacity:0; }
+    89%{ transform:translate(4px,1px); opacity:0.65; }
+    92%{ transform:translate(-4px,0); opacity:0.45; }
+    94%{ transform:translate(3px,-1px); opacity:0.65; }
+    96%{ transform:translate(-3px,1px); opacity:0.35; }
+  }
+
+  .tagline{
+    font-family:'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    font-size:0.95rem;
+    margin-top:1.4rem;
+  }
+
+  .stat-row{
+    display:flex; justify-content:center; gap:1.8rem;
+    margin-top:1.8rem;
+    flex-wrap:wrap;
+  }
+  .stat{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color: var(--text-dim);
+    text-align:center;
+  }
+  .stat b{
+    display:block;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.3rem;
+    color: var(--red);
+    font-weight:700;
+  }
+
+  /* ---------- CONTENT ---------- */
+  .content{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+    display:grid;
+    gap: 2.4rem;
+  }
+
+  .section-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color: var(--red);
+    margin-bottom:0.9rem;
+    display:flex; align-items:center; gap:0.6rem;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--line);
+  }
+
+  .panel{
+    background: var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .panel-head{
+    display:flex; align-items:center; gap:0.7rem;
+    padding: 0.95rem 1.3rem;
+    border-bottom:1px solid var(--line);
+    background: linear-gradient(90deg, rgba(255,43,61,0.10), transparent 60%);
+  }
+  .traffic{ display:flex; gap:6px; }
+  .traffic span{ width:9px; height:9px; border-radius:50%; background:var(--red); opacity:0.85; }
+  .traffic span:nth-child(2){ opacity:0.5; }
+  .traffic span:nth-child(3){ opacity:0.25; }
+  .panel-title{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color: var(--red);
+  }
+  .panel-sub{
+    margin-left:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    color: var(--text-dim);
+  }
+
+  .bio-body{
+    padding: 1.6rem 1.7rem 1.8rem;
+    font-size:1rem;
+    line-height:1.85;
+  }
+  .bio-body p{ margin-bottom:1.1rem; }
+  .bio-body p:last-child{ margin-bottom:0; }
+  .bio-body b{ color: var(--red); font-weight:600; }
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .achieve-list{ padding: 0.5rem 0; }
+  .achieve-row{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    padding: 0.85rem 1.3rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .achieve-row:last-child{ border-bottom:none; }
+  .achieve-row.special{
+    background: linear-gradient(90deg, rgba(255,43,61,0.08), transparent 70%);
+  }
+
+  .medal{
+    flex-shrink:0;
+    width:36px; height:36px;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    border:1px solid var(--line);
+  }
+  .medal.gold{ color:var(--gold); border-color: rgba(255,207,92,0.4); background: rgba(255,207,92,0.08); }
+  .medal.silver{ color:var(--silver); border-color: rgba(207,214,224,0.35); background: rgba(207,214,224,0.06); }
+  .medal.bronze{ color:var(--bronze); border-color: rgba(217,138,82,0.4); background: rgba(217,138,82,0.08); }
+  .medal.star{ color:var(--red); border-color: rgba(255,43,61,0.4); background: rgba(255,43,61,0.1); }
+
+  .achieve-text{
+    flex:1;
+  }
+  .achieve-name{ font-weight:500; }
+  .achieve-name b{ color: var(--text); }
+
+  footer{
+    text-align:center;
+    padding: 2.5rem 1.5rem 3.5rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color: var(--text-dim);
+    border-top:1px solid var(--line);
+  }
+  .dot{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); margin-right:6px; box-shadow:0 0 8px var(--red); }
+
+  @media (prefers-reduced-motion: reduce){
+    .glitch-wrap::before, .glitch-wrap::after{ animation:none; opacity:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <a class="back-link" href="setup_maza4kst.html">← сетап</a>
+  <div class="eyebrow">Профиль игрока</div>
+  <h1 class="logo">
+    <span class="glitch-wrap" data-text="MAZONI">MAZONI</span>
+  </h1>
+  <p class="tagline">// биография и достижения в Escape From Tarkov</p>
+
+  <div class="stat-row">
+    <div class="stat"><b>32</b>года</div>
+    <div class="stat"><b>176</b>см</div>
+    <div class="stat"><b>92</b>кг</div>
+    <div class="stat"><b>10 000+</b>часов в EFT</div>
+  </div>
+</header>
+
+<main class="content">
+
+  <div>
+    <div class="section-label">Обо мне</div>
+    <section class="panel">
+      <div class="panel-head">
+        <span class="traffic"><span></span><span></span><span></span></span>
+        <span class="panel-title">Досье</span>
+        <span class="panel-sub">about</span>
+      </div>
+      <div class="bio-body">
+        <p>Приветствую тебя, братское сердце ❗</p>
+        <p>Меня зовут <b>Женя</b>, мой ник <b>«MAZONI»</b>. Мне 32 года (день рождения — 5 июля).</p>
+        <p>Родился в Казахстане, в городе Костанай. Работал в IT-сфере — чинил и обслуживал ПК и оборудование. В свободное время играл в Counter-Strike со многими ныне профессиональными игроками на LAN-турнирах и на FACEIT (бывший 10 LVL). Участвовал в гонках и доводил до ума свои автомобили.</p>
+        <p>В 2019 году по программе переехал вместе со своей семьёй — женой и двумя дочками — в Россию, в город Калининград. Именно с этого момента начал стримить в свободное от работы время, а в итоге стриминг стал моей основной, постоянной деятельностью.</p>
+        <p>Шарю в автомобилях, девайсах для ПК и в самом железе. Играю в <b>Escape From Tarkov</b> на протяжении 10 тысяч часов. Качаюсь в зале, правильно питаюсь и достигаю новых результатов в этом деле.</p>
+      </div>
+    </section>
+  </div>
+
+  <div>
+    <div class="section-label">Достижения в Escape From Tarkov</div>
+    <section class="panel">
+      <div class="panel-head">
+        <span class="traffic"><span></span><span></span><span></span></span>
+        <span class="panel-title">Турниры</span>
+        <span class="panel-sub">2018 — 2025</span>
+      </div>
+      <div class="achieve-list">
+        <div class="achieve-row">
+          <div class="medal bronze">3</div>
+          <div class="achieve-text"><span class="achieve-name">3-е место — <b>«EFT S4»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal bronze">3</div>
+          <div class="achieve-text"><span class="achieve-name">3-е место — <b>«EFT Twitch Rivals '20»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal silver">2</div>
+          <div class="achieve-text"><span class="achieve-name">2-е место — <b>«Evasion Trio»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal silver">2</div>
+          <div class="achieve-text"><span class="achieve-name">2-е место — <b>«Evasion Duo»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal silver">2</div>
+          <div class="achieve-text"><span class="achieve-name">2-е место — <b>«ETF Twitch Rivals '21»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal silver">2</div>
+          <div class="achieve-text"><span class="achieve-name">2-е место — <b>«Invictus Gaming»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal silver">2</div>
+          <div class="achieve-text"><span class="achieve-name">2-е место — <b>«Evasion Duo '21»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal silver">2</div>
+          <div class="achieve-text"><span class="achieve-name">2-е место — <b>«Evasion Trio '22»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal gold">1</div>
+          <div class="achieve-text"><span class="achieve-name">1-е место — <b>«MK #7 '23»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal bronze">3</div>
+          <div class="achieve-text"><span class="achieve-name">3-е место — <b>«Arena Giants by BetBoom x Tarkov Help '24»</b></span></div>
+        </div>
+        <div class="achieve-row">
+          <div class="medal gold">1</div>
+          <div class="achieve-text"><span class="achieve-name">1-е место — <b>«Streamers Games '25»</b></span></div>
+        </div>
+        <div class="achieve-row special">
+          <div class="medal star">★</div>
+          <div class="achieve-text"><span class="achieve-name">Получил свой <b>именной стримерский предмет</b> в игре</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer>
+  <span class="dot"></span>mazoni — biography, обновлено вручную
+</footer>
+
+</body>
+</html>
