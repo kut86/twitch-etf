@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAZA4KST — Setup</title>
+<title>MAZONI — Setup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -176,6 +176,19 @@
     border-color: var(--red);
     box-shadow: 0 0 30px rgba(255,43,61,0.4);
     transform: translateY(-3px);
+  }
+
+  .social-card.cmd-card{
+    border-color: rgba(255,122,61,0.35);
+    border-style: dashed;
+  }
+  .social-card.cmd-card .icon{
+    background: rgba(255,122,61,0.15);
+  }
+  .social-card.cmd-card:hover{
+    border-color: var(--amber);
+    border-style: solid;
+    box-shadow: 0 0 30px rgba(255,122,61,0.35);
   }
 
   /* ---------- WELCOME MESSAGE ---------- */
@@ -404,6 +417,20 @@
       </span>
     </a>
 
+    <a class="social-card cmd-card" href="commands.html">
+      <span class="icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="4" width="20" height="16" rx="4" fill="#ff7a3d"/>
+          <path d="M6 9.5L9 12L6 14.5" stroke="#0c0505" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="11" y="13" width="6" height="1.7" rx="0.8" fill="#0c0505"/>
+        </svg>
+      </span>
+      <span>
+        Chat Commands
+        <small>список команд для чата</small>
+      </span>
+    </a>
+
     <a class="social-card" href="https://youtube.com/@maza4kst" target="_blank" rel="noopener">
       <span class="icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -447,7 +474,7 @@
 
 <div class="welcome-wrap">
   <div class="welcome">
-    <span class="hand">🤚🏻</span> Братское сердце ❤️ << тут описан весь список моих девайсов и ПК которые я использую на стриме.>>
+    <span class="hand">🤚🏻</span> Братское сердце ❤️ <b></b> тут описан весь список моих девайсов и переферий которые я использую на стриме.</b>
     <div class="welcome-links">
       <span><span class="lbl">Сотрудничество:</span> <a href="mailto:maza4kst@justoffer.ru">maza4kst@justoffer.ru</a></span>
       <span><span class="lbl">РКН:</span> <a href="https://goo.su/j8Ac" target="_blank" rel="noopener">goo.su/j8Ac</a></span>
